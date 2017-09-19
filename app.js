@@ -5,7 +5,6 @@ const chalk = require('chalk');
 const app = express(); // creates an instance of an express application
 
 
-
 app.use(volleyball);
 
 app.get('/*', function (req, res, next) {
