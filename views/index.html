@@ -7,18 +7,36 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
-      <b>Your Name</b><br>
-      100 followers
+      <img class=profpic src="http://static6.businessinsider.com/image/55918b77ecad04a3465a0a63/nbc-fires-donald-trump-after-he-calls-mexicans-rapists-and-drug-runners.jpg"><br>
+      <b class=header >Donald Trumpf</b><br>
+      <br>
+      <b class=follow >1,000,000,000 followers </b>
     </div>
     <div class="col-md-9">
 
       <!-- display tweets here -->
+      {% if showForm %}
+      <form class ='form' action="/tweets" method="POST">
+        <label for="name_field">Name:</label>
+        <input name="name" value="{{tweets[0].name}}" type="text" id="name_field" />
+
+
+
+
+        <label for="text_field">Tweet:</label>
+        <input name="text" type="text" id="text_field" style="width: 350px;" />
+
+        <input type="submit" value="Submit" />
+      </form>
+    {% endif %}
+    <a id='newText'>   </a>
       {% for tweet in tweets %}
-        <li>{{tweet.content}}</li>
-      {% endfor %}
+        <h5 ><a href="/users/{{tweet.name}}">{{tweet.name}}</a></h5>
+        <li > <a href="/tweets/{{tweet.id}}">{{tweet.content}}</a></li>
+        {% endfor %}
 
     </div>
   </div>
 
 {% endblock %}
+

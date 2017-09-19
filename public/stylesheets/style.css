@@ -48,13 +48,59 @@ code {
 
 .tweetbox img {
   float: left;
-  height: 48px;
-  width: 48px;
+  height: 100px;
+  width: 100px;
   content:url("http://lorempixel.com/48/48");
 }
 .content {
   margin-left: 60px;
+
 }
 .content .by {
   font-weight: bold;
+}
+h5 {
+  color: #030329;
+  font-weight: bold;
+  text-decoration: underline;
+
+}
+li {
+  color: #10BBF7;
+}
+.form {
+  color: #000000;
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: #04048E;
+  font-weight: bold;
+  text-align: center;
+
+}
+.profpic {
+  height: 200px;
+  width: 200px;
+  padding-bottom: 15px;
+  padding-top: 30px;
+}
+
+.header {
+  color: #020294;
+  font-weight: bold;
+
+  text-align: center;
+  position: relative;
+  left: 40px;
+  border: 5px groove #0D1DDA;
+
+}
+.follow {
+  text-align: center;
+  padding-bottom: 30px;
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+  text-decoration: underline;
 }

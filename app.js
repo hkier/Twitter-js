@@ -5,23 +5,29 @@ const chalk = require('chalk');
 const app = express(); // creates an instance of an express application
 const nunjucks = require('nunjucks');
 const routes = require('./routes');
+const router = express.Router();
+const bodyparser = require("body-parser");
+app.use(bodyparser.urlencoded({extended: false}));
 app.use(volleyball);
-app.use('/', routes);
+var socketio = require('socket.io');
+var server = app.listen(3000);
+var io = socketio.listen(server);
+app.use( '/', routes(io) );
 app.use(express.static('public'));
 
 
-var locals = {
-    title: 'Twitter',
-    people: [
-        { name: 'Gandalf' },
-        { name: 'Frodo' },
-        { name: 'Hermione' }
-      ]
-    };
-    nunjucks.render('index.html', locals, function (err, output) {
-        console.log(output);
-      });
-const people = [{ name: 'Full' }, { name: 'Stacker' }, { name: 'Son' }];
+// var locals = {
+//     title: 'Twitter',
+//     people: [
+//         { name: 'Gandalf' },
+//         { name: 'Frodo' },
+//         { name: 'Hermione' }
+//       ]
+//     };
+//     nunjucks.render('index.html', locals, function (err, output) {
+//         console.log(output);
+//       });
+// const people = [{ name: 'Full' }, { name: 'Stacker' }, { name: 'Son' }];
 
 
 app.set('view engine', 'html'); // have res.render work with html files
@@ -29,15 +35,17 @@ app.engine('html', nunjucks.render); // when giving html files to res.render, te
 nunjucks.configure('views', { noCache: true }); // point nunjucks to the proper directory for templates
 
 
-app.get('/', function (req, res, next) {
-  // this is what will happen when GET /
-  // console.log(req.originalUrl);
-  // res.send('Hello, welcome to our Twitter App!');
-  res.render('index', { title: 'Hall of Fame', people: people });
-  next();
-});
 
 
-app.listen(3000, function () {
-  console.log('Listening on 3000');
-});
+// app.get('/', function (req, res, next) {
+//   // this is what will happen when GET /
+//   // console.log(req.originalUrl);
+//   // res.send('Hello, welcome to our Twitter App!');
+//   res.render('index', { title: 'Hall of Fame', people: people });
+//   next();
+// });
+
+
+// app.listen(3000, function () {
+//   console.log('Listening on 3000');
+// });

@@ -1,9 +1,10 @@
 const _ = require('lodash');
 
 let data = [];
-
+let id=0;
 function add(name, content) {
-  data.push({ name: name, content: content });
+  id++;
+  data.push({ name: name, content: content, id: id });
 }
 
 function list() {
